@@ -4,6 +4,7 @@ from reset_db import reset_dbs
 from administrate.migrate_cities import migrate_cities
 from administrate.migrate_divisions import migrate_divisions
 from base.migrate_users import migrate_users
+from appeal.migrate_appeals import migrate_appeals
 
 RESET = "\033[0m"
 RED = "\033[31m"
@@ -37,7 +38,7 @@ def main():
     migrate_cities()
     migrate_divisions()
     migrate_users()
-    # ...
+    migrate_appeals()
 
 
 if __name__ == "__main__":
