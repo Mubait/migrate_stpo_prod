@@ -1,6 +1,10 @@
 from connect import check_connections
 from reset_db import reset_dbs
 
+from administrate.migrate_cities import migrate_cities
+from administrate.migrate_divisions import migrate_divisions
+from base.migrate_users import migrate_users
+
 RESET = "\033[0m"
 RED = "\033[31m"
 GREEN = "\033[32m"
@@ -30,9 +34,9 @@ def main():
     # 3. Здесь дальше будут миграции
     print(f"{BLUE}\n[3] Перенос данных{RESET}")
 
-    # migrate_divisions()
-    # migrate_users()
-    # migrate_services()
+    migrate_cities()
+    migrate_divisions()
+    migrate_users()
     # ...
 
 

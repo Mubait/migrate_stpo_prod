@@ -2,9 +2,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 PROJECT_DIR = Path("/var/www/STPO")
-
 
 def run_command(command):
     print(f"\n$ {' '.join(command)}")
