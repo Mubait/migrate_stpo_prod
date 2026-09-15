@@ -1,5 +1,5 @@
-from .connect import check_connections
-from .reset_db import reset_dbs
+from connect import check_connections
+from reset_db import reset_dbs
 
 
 def main():
