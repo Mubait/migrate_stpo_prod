@@ -1,18 +1,30 @@
 # migrate_db/connect.py
-
+import os
 from contextlib import contextmanager
-
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
+def load_env(path=".env"):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Файл {path} не найден")
 
-USER = "root"
-PASSWORD = "Wtynh2023$"
-HOST = "localhost"
+    with open(path, "r", encoding="utf-8") as file:
+        for line in file:
+            line = line.strip()
 
-SOURCE_DB = "STPO_prod"
-TARGET_DB = "stpo"
+            if not line or line.startswith("#"):
+                continue
 
+            key, value = line.split("=", 1)
+
+            os.environ[key.strip()] = value.strip()
+load_env()
+
+USER = os.getenv("DB_USER")
+PASSWORD = os.getenv("DB_PASSWORD")
+HOST = os.getenv("DB_HOST")
+SOURCE_DB = os.getenv("DB_SOURCE")
+TARGET_DB = os.getenv("DB_TARGET")
 
 source = create_engine(
     f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}/{SOURCE_DB}",

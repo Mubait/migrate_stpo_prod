@@ -1,6 +1,12 @@
 from connect import check_connections
 from reset_db import reset_dbs
 
+RESET = "\033[0m"
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+CYAN = "\033[36m"
 
 def main():
     print("=" * 60)
@@ -8,21 +14,21 @@ def main():
     print("=" * 60)
 
     # 1. Проверяем подключения
-    print("\n[1] Проверка подключений")
+    print(f"{BLUE}\n[1] Проверка подключений{RESET}")
 
     if not check_connections():
-        print("\n✗ Подключение к базам не установлено")
+        print(f"{RED}\n✗ Подключение к базам не установлено{RESET}")
         return
 
-    print("\n✓ Подключение к обеим базам успешно")
+    print(f"{GREEN}\n✓ Подключение к обеим базам успешно{RESET}")
 
     # 2. Сбрасываем целевую БД
-    print("\n[2] Сброс целевой базы")
+    print(f"{BLUE}\n[2] Сброс целевой базы{RESET}")
 
     reset_dbs()
 
     # 3. Здесь дальше будут миграции
-    print("\n[3] Перенос данных")
+    print(f"{BLUE}\n[3] Перенос данных{RESET}")
 
     # migrate_divisions()
     # migrate_users()
